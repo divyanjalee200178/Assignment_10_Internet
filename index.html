@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        background: whitesmoke;
+        align-items: center;
+        min-height: 100vh;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .calculator{
+        border-radius: 10px;
+        border: 3px solid black;
+        padding: 20px;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    }
+    input{
+        width: 260px;
+        padding: 24px;
+        margin: 10px;
+        text-align: right;
+        cursor: pointer;
+        border: 2px solid black;
+        font-size: 20px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    }
+
+    input::placeholder{
+        color: black;
+    }
+    button{
+        width: 60px;
+        height: 60px;
+        margin: 10px;
+        border-radius: 20%;
+        background: transparent;
+        color: blue;
+        border: 2px solid black;
+        font-size:15px ;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    }
+
+
+    .equalBtn{
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+        color: red;
+        font-size: 20px;
+    }
+    .btn{
+        color: red;
+    }
+
+
+
+</style>
+<body>
+<section class="calculator">
+    <input type="text" placeholder="0" id="inputBox">
+    <div>
+        <button class="btn">AC</button>
+        <button class="btn">DEL</button>
+        <button class="btn">%</button>
+        <button class="btn">/</button>
+    </div>
+
+    <div>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button class="btn">*</button>
+    </div>
+
+    <div>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button class="btn">-</button>
+    </div>
+
+    <div>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button class="btn">+</button>
+    </div>
+
+    <div>
+        <button>00</button>
+        <button>0</button>
+        <button>.</button>
+        <button class="equalBtn">=</button>
+    </div>
+
+
+</section>
+
+<script src="lib/jquery-3.7.1.min.js"></script>
+
+<script>
+
+let input=document.getElementById('inputBox');
+let buttons=document.querySelectorAll('button');
+
+let txt="";
+let arr=Array.from(buttons);
+arr.forEach(button=>{
+    button.addEventListener("click", (e)=>{
+        if (e.target.innerHTML=='='){
+            txt=eval(txt);
+            input.value=txt;
+        }
+        else if (e.target.innerHTML=='AC'){
+            txt="";
+            input.value=txt;
+        }
+        else if (e.target.innerHTML=='DEL'){
+            txt=txt.substring(0,txt.length-1);
+            input.value=txt;
+        }
+        else {
+            txt +=e.target.innerHTML;
+            input.value=txt;
+        }
+
+    })
+})
+
+</script>
+</body>
+</html>
